@@ -1,6 +1,7 @@
 package com.cy.util;
 
 import com.cy.model.Block;
+import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
@@ -36,9 +37,12 @@ public class Pen {
     public static void draw(Block[][] maze) {
         for (int i = 0; i < maze.length; i++) {
             for (int j = 0; j < maze[0].length; j++) {
+                setColor(maze[i][j]);
                 textGraphics.putString(resizeFactor * j, i, maze[i][j].toString());
+                resetColor();
             }
         }
+
         flush();
     }
 
@@ -50,7 +54,10 @@ public class Pen {
      * @param block the block.
      */
     public static void update(int row, int col, Block block) {
+        setColor(block);
         textGraphics.putString(resizeFactor * col, row, block.toString());
+        resetColor();
+
         flush();
     }
 
@@ -63,5 +70,15 @@ public class Pen {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void setColor(Block block) {
+        textGraphics.setForegroundColor(block.getFore());
+        textGraphics.setBackgroundColor(block.getBack());
+    }
+
+    private static void resetColor() {
+        textGraphics.setForegroundColor(TextColor.ANSI.DEFAULT);
+        textGraphics.setBackgroundColor(TextColor.ANSI.DEFAULT);
     }
 }
