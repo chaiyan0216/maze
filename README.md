@@ -1,4 +1,4 @@
-# maze
+# Maze
 
 [![JDK badge][jdk_badge]][jdk]
 [![Maven badge][mvn_badge]][mvn]

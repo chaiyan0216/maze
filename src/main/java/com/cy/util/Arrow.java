@@ -15,7 +15,7 @@ public class Arrow {
     }
 
     /**
-     * Random BFS 4 directions.
+     * Random DFS 4 directions.
      *
      * @param maze     the maze.
      * @param startRow the entry row.
@@ -46,7 +46,7 @@ public class Arrow {
         }
         Collections.shuffle(shuffle);
 
-        // BFS
+        // DFS
         for (int i : shuffle) {
             int nextRow = startRow + directions[i][0];
             int nextCol = startCol + directions[i][1];
